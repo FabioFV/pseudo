@@ -1,0 +1,12 @@
+PROGRAMA
+    ENT x
+    ENT y
+    ENT suma
+
+    LEE(x)
+    LEE(y)
+
+    suma = x + y
+
+    IMPRIME(suma)
+FIN
