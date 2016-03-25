@@ -81,6 +81,6 @@ variable    : var nombre | var nombre EQ valor;
 constante   : CONST nombre EQ valor;
 
 //FUNCIONES
-imprime     : IMPRIME LPAREN nombre RPAREN;
+imprime     : IMPRIME LPAREN (exp | operacion) RPAREN;
 
 lee         : LEE LPAREN nombre RPAREN;
