@@ -17,6 +17,7 @@ DIV     : '/' ;
 PLUS    : '+' ;
 MINUS   : '-' ;
 
+
 GT      : '>' ;
 GE      : '>=' ;
 LT      : '<' ;
@@ -26,8 +27,11 @@ EQ      : '=' ;
 LPAREN  : '(' ;
 RPAREN  : ')' ;
 
-VAR     : 'VAR';
+ENT     : 'ENT';
+DEC     : 'DEC';
+STR     : 'STR';
 CONST   : 'CONST';
+
 IMPRIME : 'IMPRIME';
 LEE     : 'LEE';
 
@@ -47,26 +51,37 @@ declaracion :  variable | constante;
 
 funcion     : imprime | lee;
 
+var         : ENT | DEC | STR;
+
+//CONDICION
 condicional : IF LPAREN condicion RPAREN THEN conclusion;
 
-condicion   : condicion AND condicion | condicion OR condicion | evaluacion;
+condicion   : LPAREN condicion RPAREN AND LPAREN condicion RPAREN | LPAREN condicion RPAREN OR LPAREN condicion RPAREN
+            | evaluacion;
 
 comp_operator : GT | GE | LT | LE | EQ;
 
-evaluacion   : nombre comp_operator (nombre | valor);
+evaluacion  : (nombre | operacion) comp_operator (nombre | valor);
 
 conclusion  : asignacion | funcion;
 
-asignacion  : nombre EQ valor;
+//EXPRESIONES
+asignacion  : nombre EQ exp | nombre EQ operacion;
 
-variable    : VAR nombre | VAR nombre EQ valor;
+operacion   : exp DIV exp | exp MULT exp | exp PLUS exp | exp MINUS exp;
 
-constante   : CONST nombre EQ valor;
+exp         : nombre | valor;
 
 nombre      : NAMEDEF;
 
 valor       : NUMDEF;
 
+//VARIABLES & CONSTANTES
+variable    : var nombre | var nombre EQ valor;
+
+constante   : CONST nombre EQ valor;
+
+//FUNCIONES
 imprime     : IMPRIME LPAREN nombre RPAREN;
 
 lee         : LEE LPAREN nombre RPAREN;
