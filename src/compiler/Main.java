@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,7 +51,10 @@ public class Main {
         ClassFile classFile = new ClassFile();
         classFile.readJasmin(new StringReader(code), "", false);
         Path outputPath = directory.resolve(classFile.getClassName() + ".class");
-        classFile.write(Files.newOutputStream(outputPath));
+        try(OutputStream output = Files.newOutputStream(outputPath))
+        {
+            classFile.write(output);
+        }
     }
 
     private static String run() throws Exception
