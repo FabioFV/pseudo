@@ -1045,24 +1045,24 @@ public class PSEUDOParser extends Parser {
 						break;
 					case 3:
 						{
-						_localctx = new SumaContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new RestaContext(new OperacionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(121);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(122);
-						match(PLUS);
+						match(MINUS);
 						setState(123);
 						operacion(4);
 						}
 						break;
 					case 4:
 						{
-						_localctx = new RestaContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new SumaContext(new OperacionContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(124);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(125);
-						match(MINUS);
+						match(PLUS);
 						setState(126);
 						operacion(3);
 						}
@@ -1534,10 +1534,10 @@ public class PSEUDOParser extends Parser {
 		"\2hi\5\34\17\2ij\7\23\2\2jk\5\32\16\2kq\3\2\2\2lm\5\34\17\2mn\7\23\2\2"+
 		"no\5\30\r\2oq\3\2\2\2ph\3\2\2\2pl\3\2\2\2q\27\3\2\2\2rs\b\r\1\2st\5\32"+
 		"\16\2t\u0083\3\2\2\2uv\f\7\2\2vw\7\f\2\2w\u0082\5\30\r\bxy\f\6\2\2yz\7"+
-		"\13\2\2z\u0082\5\30\r\7{|\f\5\2\2|}\7\r\2\2}\u0082\5\30\r\6~\177\f\4\2"+
-		"\2\177\u0080\7\16\2\2\u0080\u0082\5\30\r\5\u0081u\3\2\2\2\u0081x\3\2\2"+
-		"\2\u0081{\3\2\2\2\u0081~\3\2\2\2\u0082\u0085\3\2\2\2\u0083\u0081\3\2\2"+
-		"\2\u0083\u0084\3\2\2\2\u0084\31\3\2\2\2\u0085\u0083\3\2\2\2\u0086\u0089"+
+		"\13\2\2z\u0082\5\30\r\7{|\f\5\2\2|}\7\16\2\2}\u0082\5\30\r\6~\177\f\4"+
+		"\2\2\177\u0080\7\r\2\2\u0080\u0082\5\30\r\5\u0081u\3\2\2\2\u0081x\3\2"+
+		"\2\2\u0081{\3\2\2\2\u0081~\3\2\2\2\u0082\u0085\3\2\2\2\u0083\u0081\3\2"+
+		"\2\2\u0083\u0084\3\2\2\2\u0084\31\3\2\2\2\u0085\u0083\3\2\2\2\u0086\u0089"+
 		"\5\34\17\2\u0087\u0089\5\36\20\2\u0088\u0086\3\2\2\2\u0088\u0087\3\2\2"+
 		"\2\u0089\33\3\2\2\2\u008a\u008b\7\34\2\2\u008b\35\3\2\2\2\u008c\u008d"+
 		"\7\35\2\2\u008d\37\3\2\2\2\u008e\u008f\5\n\6\2\u008f\u0090\5\34\17\2\u0090"+

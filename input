@@ -6,4 +6,5 @@ PROGRAMA
     IMPRIME(2*2)
     IMPRIME(2/2)
     IMPRIME(2*5+8)
+    IMPRIME(8-2+5)
 FIN

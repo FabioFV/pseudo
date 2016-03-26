@@ -69,8 +69,8 @@ asignacion  : nombre EQ exp | nombre EQ operacion;
 
 operacion   : operacion DIV operacion #Division
             | operacion MULT operacion #Multiplicacion
-            | operacion PLUS operacion #Suma
             | operacion MINUS operacion #Resta
+            | operacion PLUS operacion #Suma
             | exp #Numero;
 
 exp         : nombre | valor;
