@@ -4,7 +4,12 @@ import parser.PSEUDOBaseListener;
 import parser.PSEUDOBaseVisitor;
 import parser.PSEUDOParser;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Visitor extends PSEUDOBaseVisitor<String>{
+
+    Map<String, Integer> variables = new HashMap<>();
 
     @Override
     public String visitSuma(PSEUDOParser.SumaContext ctx) {
@@ -31,8 +36,21 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
     }
 
     @Override
+    public String visitExp(PSEUDOParser.ExpContext ctx) {
+        if(ctx.nombre() != null)
+            return visit(ctx.nombre());
+        else
+            return visit(ctx.valor());
+    }
+
+    @Override
     public String visitValor(PSEUDOParser.ValorContext ctx) {
-        return "ldc " + ctx.getChild(0).getText();
+        return "ldc " + ctx.NUMDEF().getText();
+    }
+
+        @Override
+    public String visitNombre(PSEUDOParser.NombreContext ctx) {
+        return "iload " + variables.get(ctx.NAMEDEF().getText());
     }
 
     @Override
@@ -40,6 +58,31 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
         return  "  getstatic java/lang/System/out Ljava/io/PrintStream;\n" +
                 visit(ctx.getChild(2)) + "\n" +
                 "  invokevirtual java/io/PrintStream/println(I)V\n";
+    }
+
+    @Override
+    public String visitConstante(PSEUDOParser.ConstanteContext ctx) {
+        variables.put(ctx.nombre().getText(), variables.size());
+        return visit(ctx.valor()) + "\n" +
+                "istore " + variables.get(ctx.nombre().getText());
+    }
+
+    @Override
+    public String visitVariable(PSEUDOParser.VariableContext ctx) {
+        variables.put(ctx.varName.getText(), variables.size());
+
+        if(ctx.expr != null)
+        {
+            return visit(ctx.expr) + "\n" +
+                    "istore " + variables.get(ctx.varName.getText());
+        }
+        return "";
+    }
+
+    @Override
+    public String visitAsignacion(PSEUDOParser.AsignacionContext ctx) {
+        return visit(ctx.exp()) + "\n" +
+                "istore " + variables.get(ctx.nombre().getText());
     }
 
     @Override

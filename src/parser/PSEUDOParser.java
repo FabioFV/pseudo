@@ -1233,6 +1233,8 @@ public class PSEUDOParser extends Parser {
 	}
 
 	public static class VariableContext extends ParserRuleContext {
+		public NombreContext varName;
+		public ValorContext expr;
 		public VarContext var() {
 			return getRuleContext(VarContext.class,0);
 		}
@@ -1274,7 +1276,7 @@ public class PSEUDOParser extends Parser {
 				setState(140);
 				var();
 				setState(141);
-				nombre();
+				((VariableContext)_localctx).varName = nombre();
 				}
 				break;
 			case 2:
@@ -1283,11 +1285,11 @@ public class PSEUDOParser extends Parser {
 				setState(143);
 				var();
 				setState(144);
-				nombre();
+				((VariableContext)_localctx).varName = nombre();
 				setState(145);
 				match(EQ);
 				setState(146);
-				valor();
+				((VariableContext)_localctx).expr = valor();
 				}
 				break;
 			}

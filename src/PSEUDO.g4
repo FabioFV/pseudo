@@ -80,7 +80,7 @@ nombre      : NAMEDEF;
 valor       : NUMDEF;
 
 //VARIABLES & CONSTANTES
-variable    : var nombre | var nombre EQ valor;
+variable    : var varName=nombre | var varName=nombre EQ expr=valor;
 
 constante   : CONST nombre EQ valor;
 
