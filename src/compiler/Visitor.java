@@ -1,6 +1,7 @@
 package compiler;
 
-import parser.PSEUDOBaseListener;
+import compiler.exceptions.VariableNoDeclaradaException;
+import org.antlr.v4.runtime.Token;
 import parser.PSEUDOBaseVisitor;
 import parser.PSEUDOParser;
 
@@ -50,7 +51,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
         @Override
     public String visitNombre(PSEUDOParser.NombreContext ctx) {
-        return "iload " + variables.get(ctx.NAMEDEF().getText());
+            return "iload " + searchVariableIndex(ctx.getStart());
     }
 
     @Override
@@ -82,7 +83,18 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
     @Override
     public String visitAsignacion(PSEUDOParser.AsignacionContext ctx) {
         return visit(ctx.exp()) + "\n" +
-                "istore " + variables.get(ctx.nombre().getText());
+                "istore " + searchVariableIndex(ctx.nombre().getStart());
+    }
+
+    private int searchVariableIndex(Token varNameToken)
+    {
+        Integer varIndex = variables.get(varNameToken.getText());
+
+        if(varIndex == null)
+        {
+            throw new VariableNoDeclaradaException(varNameToken);
+        }
+        return varIndex;
     }
 
     @Override
