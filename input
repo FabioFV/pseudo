@@ -1,12 +1,9 @@
 PROGRAMA
-    ENT x
-    ENT y
-    ENT suma
-
-    LEE(x)
-    LEE(y)
-
-    suma = x + y
-
-    IMPRIME(suma)
+    IMPRIME(1)
+    IMPRIME(2)
+    IMPRIME(2+2)
+    IMPRIME(2-2)
+    IMPRIME(2*2)
+    IMPRIME(2/2)
+    IMPRIME(2*5+8)
 FIN

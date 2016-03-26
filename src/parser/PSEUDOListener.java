@@ -118,15 +118,65 @@ public interface PSEUDOListener extends ParseTreeListener {
 	 */
 	void exitAsignacion(PSEUDOParser.AsignacionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PSEUDOParser#operacion}.
+	 * Enter a parse tree produced by the {@code Numero}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
 	 * @param ctx the parse tree
 	 */
-	void enterOperacion(PSEUDOParser.OperacionContext ctx);
+	void enterNumero(PSEUDOParser.NumeroContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PSEUDOParser#operacion}.
+	 * Exit a parse tree produced by the {@code Numero}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
 	 * @param ctx the parse tree
 	 */
-	void exitOperacion(PSEUDOParser.OperacionContext ctx);
+	void exitNumero(PSEUDOParser.NumeroContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Suma}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterSuma(PSEUDOParser.SumaContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Suma}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitSuma(PSEUDOParser.SumaContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterDivision(PSEUDOParser.DivisionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitDivision(PSEUDOParser.DivisionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Multiplicacion}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplicacion(PSEUDOParser.MultiplicacionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Multiplicacion}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplicacion(PSEUDOParser.MultiplicacionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Resta}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void enterResta(PSEUDOParser.RestaContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Resta}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 */
+	void exitResta(PSEUDOParser.RestaContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PSEUDOParser#exp}.
 	 * @param ctx the parse tree

@@ -77,11 +77,40 @@ public interface PSEUDOVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAsignacion(PSEUDOParser.AsignacionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PSEUDOParser#operacion}.
+	 * Visit a parse tree produced by the {@code Numero}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOperacion(PSEUDOParser.OperacionContext ctx);
+	T visitNumero(PSEUDOParser.NumeroContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Suma}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSuma(PSEUDOParser.SumaContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Division}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDivision(PSEUDOParser.DivisionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Multiplicacion}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMultiplicacion(PSEUDOParser.MultiplicacionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Resta}
+	 * labeled alternative in {@link PSEUDOParser#operacion}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitResta(PSEUDOParser.RestaContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PSEUDOParser#exp}.
 	 * @param ctx the parse tree
