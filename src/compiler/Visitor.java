@@ -82,7 +82,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
     public String visitAsignacion(PSEUDOParser.AsignacionContext ctx) {
-        return visit(ctx.exp()) + "\n" +
+        return visit(ctx.operacion()) + "\n" +
                 "istore " + searchVariableIndex(ctx.nombre().getStart());
     }
 

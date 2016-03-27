@@ -65,7 +65,7 @@ evaluacion  : (nombre | operacion) comp_operator (nombre | valor);
 conclusion  : asignacion | funcion;
 
 //EXPRESIONES
-asignacion  : nombre EQ exp | nombre EQ operacion;
+asignacion  : nombre EQ operacion;
 
 operacion   : operacion DIV operacion #Division
             | operacion MULT operacion #Multiplicacion
@@ -80,7 +80,7 @@ nombre      : NAMEDEF;
 valor       : NUMDEF;
 
 //VARIABLES & CONSTANTES
-variable    : var varName=nombre | var varName=nombre EQ expr=valor;
+variable    : var varName=nombre | var varName=nombre EQ expr=operacion;
 
 constante   : CONST nombre EQ valor;
 

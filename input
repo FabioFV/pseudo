@@ -1,4 +1,7 @@
 PROGRAMA
-        ENT x = 7
-        IMPRIME(2*x+6)
+        ENT x = 7 * 2
+        ENT y = 1
+        IMPRIME(x*y)
+        x = 2
+        IMPRIME(x)
 FIN
