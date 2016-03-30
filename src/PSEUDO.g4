@@ -26,9 +26,13 @@ EQ      : '=' ;
 LPAREN  : '(' ;
 RPAREN  : ')' ;
 
+QT      : '"';
+
 ENT     : 'ENT';
 DEC     : 'DEC';
 STR     : 'STR';
+BOOL    : 'BOOL';
+
 CONST   : 'CONST';
 
 IMPRIME : 'IMPRIME';
@@ -50,7 +54,11 @@ declaracion :  variable | constante;
 
 funcion     : imprime | lee;
 
-var         : ENT | DEC | STR;
+dataType    : ENT | DEC | STR | BOOL;
+
+bool_type   : TRUE | FALSE;
+
+stringLit : QT nombre QT;
 
 //CONDICION
 condicional : IF LPAREN condicion RPAREN THEN conclusion;
@@ -73,16 +81,16 @@ operacion   : operacion DIV operacion
             | operacion PLUS operacion
             | exp;
 
-exp         : nombre | valor;
+exp         : nombre | valor | bool_type | stringLit;
 
 nombre      : NAMEDEF;
 
 valor       : NUMDEF;
 
 //VARIABLES & CONSTANTES
-variable    : var varName=nombre | var varName=nombre EQ expr=operacion;
+variable    : dataType varName=nombre | dataType varName=nombre EQ expr=operacion;
 
-constante   : CONST nombre EQ valor;
+constante   : CONST dataType nombre EQ exp;
 
 //FUNCIONES
 imprime     : IMPRIME LPAREN (exp | operacion) RPAREN;
