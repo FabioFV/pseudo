@@ -844,59 +844,9 @@ public class PSEUDOParser extends Parser {
 	}
 
 	public static class OperacionContext extends ParserRuleContext {
-		public OperacionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_operacion; }
-	 
-		public OperacionContext() { }
-		public void copyFrom(OperacionContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class NumeroContext extends OperacionContext {
 		public ExpContext exp() {
 			return getRuleContext(ExpContext.class,0);
 		}
-		public NumeroContext(OperacionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterNumero(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitNumero(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitNumero(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SumaContext extends OperacionContext {
-		public List<OperacionContext> operacion() {
-			return getRuleContexts(OperacionContext.class);
-		}
-		public OperacionContext operacion(int i) {
-			return getRuleContext(OperacionContext.class,i);
-		}
-		public TerminalNode PLUS() { return getToken(PSEUDOParser.PLUS, 0); }
-		public SumaContext(OperacionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterSuma(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitSuma(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitSuma(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class DivisionContext extends OperacionContext {
 		public List<OperacionContext> operacion() {
 			return getRuleContexts(OperacionContext.class);
 		}
@@ -904,64 +854,24 @@ public class PSEUDOParser extends Parser {
 			return getRuleContext(OperacionContext.class,i);
 		}
 		public TerminalNode DIV() { return getToken(PSEUDOParser.DIV, 0); }
-		public DivisionContext(OperacionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterDivision(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitDivision(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitDivision(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class MultiplicacionContext extends OperacionContext {
-		public List<OperacionContext> operacion() {
-			return getRuleContexts(OperacionContext.class);
-		}
-		public OperacionContext operacion(int i) {
-			return getRuleContext(OperacionContext.class,i);
-		}
 		public TerminalNode MULT() { return getToken(PSEUDOParser.MULT, 0); }
-		public MultiplicacionContext(OperacionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterMultiplicacion(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitMultiplicacion(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitMultiplicacion(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RestaContext extends OperacionContext {
-		public List<OperacionContext> operacion() {
-			return getRuleContexts(OperacionContext.class);
-		}
-		public OperacionContext operacion(int i) {
-			return getRuleContext(OperacionContext.class,i);
-		}
 		public TerminalNode MINUS() { return getToken(PSEUDOParser.MINUS, 0); }
-		public RestaContext(OperacionContext ctx) { copyFrom(ctx); }
+		public TerminalNode PLUS() { return getToken(PSEUDOParser.PLUS, 0); }
+		public OperacionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_operacion; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterResta(this);
+			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).enterOperacion(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitResta(this);
+			if ( listener instanceof PSEUDOListener ) ((PSEUDOListener)listener).exitOperacion(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitResta(this);
+			if ( visitor instanceof PSEUDOVisitor ) return ((PSEUDOVisitor<? extends T>)visitor).visitOperacion(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -982,10 +892,6 @@ public class PSEUDOParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-			_localctx = new NumeroContext(_localctx);
-			_ctx = _localctx;
-			_prevctx = _localctx;
-
 			setState(107);
 			exp();
 			}
@@ -1002,7 +908,7 @@ public class PSEUDOParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 					case 1:
 						{
-						_localctx = new DivisionContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new OperacionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(109);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
@@ -1014,7 +920,7 @@ public class PSEUDOParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new MultiplicacionContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new OperacionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(112);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
@@ -1026,7 +932,7 @@ public class PSEUDOParser extends Parser {
 						break;
 					case 3:
 						{
-						_localctx = new RestaContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new OperacionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(115);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
@@ -1038,7 +944,7 @@ public class PSEUDOParser extends Parser {
 						break;
 					case 4:
 						{
-						_localctx = new SumaContext(new OperacionContext(_parentctx, _parentState));
+						_localctx = new OperacionContext(_parentctx, _parentState);
 						pushNewRecursionContext(_localctx, _startState, RULE_operacion);
 						setState(118);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");

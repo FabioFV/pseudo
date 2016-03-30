@@ -3,5 +3,5 @@ PROGRAMA
         ENT y = 1
         IMPRIME(x*y)
         x = 2
-        IMPRIME(x)
+        IMPRIME(1+2)
 FIN

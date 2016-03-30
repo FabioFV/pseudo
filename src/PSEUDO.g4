@@ -67,11 +67,11 @@ conclusion  : asignacion | funcion;
 //EXPRESIONES
 asignacion  : nombre EQ operacion;
 
-operacion   : operacion DIV operacion #Division
-            | operacion MULT operacion #Multiplicacion
-            | operacion MINUS operacion #Resta
-            | operacion PLUS operacion #Suma
-            | exp #Numero;
+operacion   : operacion DIV operacion
+            | operacion MULT operacion
+            | operacion MINUS operacion
+            | operacion PLUS operacion
+            | exp;
 
 exp         : nombre | valor;
 
