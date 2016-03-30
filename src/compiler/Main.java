@@ -1,6 +1,5 @@
 package compiler;
 
-import jasmin.ClassFile;
 import parser.PSEUDOLexer;
 import parser.PSEUDOParser;
 import org.antlr.v4.runtime.ANTLRFileStream;
@@ -8,53 +7,46 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
     public static void main(String args[]) throws Exception
     {
         ANTLRInputStream input = new ANTLRFileStream("input");
-        compile(input);
+        createJavaFile(input);
+        compile();
+        TimeUnit.SECONDS.sleep(1L);
         System.out.println(run());
     }
 
-    public static void compile(ANTLRInputStream input) throws Exception{
+    public static void compile() throws Exception{
+        Path directory = Paths.get(System.getProperty("user.dir"));
+        System.out.println("javac " + directory.toString() + "\\Code.java");
+        Runtime.getRuntime().exec("javac " + directory.toString() + "\\Code.java");
+    }
+
+    private static void createJavaFile(ANTLRInputStream input) throws Exception{
         PSEUDOLexer lexer = new PSEUDOLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         PSEUDOParser parser = new PSEUDOParser(tokens);
         ParseTree tree = parser.programa();
 
-        createJasminCode(new Visitor().visit(tree));
-    }
+        String instructions = new Visitor().visit(tree);
 
-    private static void createJasminCode(String instructions) throws Exception{
-        String code = ".class public Code\n" +
-                ".super java/lang/Object\n" +
-                "\n" +
-                ".method public static main([Ljava/lang/String;)V\n" +
-                "  .limit stack 100\n" +
-                "  .limit locals 100\n" +
-                "  \n" +
+        String code = "public class Code {\n" +
+                "\tpublic static void main(String args[]){\n\t\t" +
                 instructions + "\n" +
-                "  return\n" +
-                "  \n" +
-                ".end method";
+                "\t}\n" +
+                "}";
 
-        Path directory = Paths.get(System.getProperty("user.dir"));
-        ClassFile classFile = new ClassFile();
-        classFile.readJasmin(new StringReader(code), "", false);
-        Path outputPath = directory.resolve(classFile.getClassName() + ".class");
-        try(OutputStream output = Files.newOutputStream(outputPath))
-        {
-            classFile.write(output);
-        }
+        PrintWriter writer = new PrintWriter("Code.java", "UTF-8");
+        writer.println(code);
+        writer.close();
     }
 
     private static String run() throws Exception
