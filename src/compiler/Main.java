@@ -26,7 +26,6 @@ public class Main {
 
     public static void compile() throws Exception{
         Path directory = Paths.get(System.getProperty("user.dir"));
-        System.out.println("javac " + directory.toString() + "\\Code.java");
         Runtime.getRuntime().exec("javac " + directory.toString() + "\\Code.java");
     }
 
