@@ -4,6 +4,11 @@ PROGRAMA
         IMPRIME(x*y)
         x = 2
         IMPRIME(1+x)
-        STR mundo = " mundo"
-        IMPRIME("Hola"+mundo)
+
+        STR hola = "Hola"
+        IMPRIME(hola)
+        IMPRIME("Adios")
+
+        CONST ENT NOSE = 3
+
 FIN

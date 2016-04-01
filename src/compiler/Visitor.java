@@ -22,9 +22,30 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
     public String visitVariable(PSEUDOParser.VariableContext ctx) {
-        String type = null;
+        String type = getJavaDataType(ctx.dataType());
         String name = ctx.varName.getText();
-        switch (ctx.dataType().getText())
+
+        if(ctx.expr != null)
+        {
+            String value = visit(ctx.expr);
+            return type + " " + name + " = " +value +";";
+        }
+
+        return type + " " + name + ";";
+    }
+
+    @Override
+    public String visitConstante(PSEUDOParser.ConstanteContext ctx) {
+        String type = getJavaDataType(ctx.dataType());
+        String name = ctx.nombre().getText();
+        String value = visit(ctx.exp());
+        return "final " + type + " " + name + " = " +value +";";
+    }
+
+    private String getJavaDataType(PSEUDOParser.DataTypeContext dataType)
+    {
+        String type =  null;
+        switch (dataType.getText())
         {
             case "ENT":
                 type = "int";
@@ -36,14 +57,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
                 type = "String";
                 break;
         }
-
-        if(ctx.expr != null)
-        {
-            String value = visit(ctx.expr);
-            return type + " " + name + " = " +value +";";
-        }
-
-        return type + " " + name + ";";
+        return type;
     }
 
     @Override
