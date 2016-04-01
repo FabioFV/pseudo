@@ -1,7 +1,9 @@
 PROGRAMA
-        ENT x = 7 * 2
-        ENT y = 1
+        ENT x = 5 + 2
+        ENT y = 3
         IMPRIME(x*y)
         x = 2
-        IMPRIME(1+2)
+        IMPRIME(1+x)
+        STR mundo = " mundo"
+        IMPRIME("Hola"+mundo)
 FIN

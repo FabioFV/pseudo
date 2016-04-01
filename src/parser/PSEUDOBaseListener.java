@@ -64,13 +64,37 @@ public class PSEUDOBaseListener implements PSEUDOListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar(PSEUDOParser.VarContext ctx) { }
+	@Override public void enterDataType(PSEUDOParser.DataTypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVar(PSEUDOParser.VarContext ctx) { }
+	@Override public void exitDataType(PSEUDOParser.DataTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBool_type(PSEUDOParser.Bool_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBool_type(PSEUDOParser.Bool_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStringLit(PSEUDOParser.StringLitContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringLit(PSEUDOParser.StringLitContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

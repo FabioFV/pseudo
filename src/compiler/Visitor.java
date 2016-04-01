@@ -11,6 +11,11 @@ import java.util.Map;
 public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
+    public String visitExp(PSEUDOParser.ExpContext ctx) {
+        return ctx.getText();
+    }
+
+    @Override
     public String visitOperacion(PSEUDOParser.OperacionContext ctx) {
         return ctx.getText();
     }
@@ -19,7 +24,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
     public String visitVariable(PSEUDOParser.VariableContext ctx) {
         String type = null;
         String name = ctx.varName.getText();
-        switch (ctx.var().getText())
+        switch (ctx.dataType().getText())
         {
             case "ENT":
                 type = "int";
@@ -29,6 +34,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
                 break;
             case "STR":
                 type = "String";
+                break;
         }
 
         if(ctx.expr != null)

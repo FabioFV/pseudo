@@ -48,15 +48,35 @@ public interface PSEUDOListener extends ParseTreeListener {
 	 */
 	void exitFuncion(PSEUDOParser.FuncionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PSEUDOParser#var}.
+	 * Enter a parse tree produced by {@link PSEUDOParser#dataType}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar(PSEUDOParser.VarContext ctx);
+	void enterDataType(PSEUDOParser.DataTypeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PSEUDOParser#var}.
+	 * Exit a parse tree produced by {@link PSEUDOParser#dataType}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar(PSEUDOParser.VarContext ctx);
+	void exitDataType(PSEUDOParser.DataTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PSEUDOParser#bool_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterBool_type(PSEUDOParser.Bool_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PSEUDOParser#bool_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitBool_type(PSEUDOParser.Bool_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PSEUDOParser#stringLit}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLit(PSEUDOParser.StringLitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PSEUDOParser#stringLit}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLit(PSEUDOParser.StringLitContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PSEUDOParser#condicional}.
 	 * @param ctx the parse tree

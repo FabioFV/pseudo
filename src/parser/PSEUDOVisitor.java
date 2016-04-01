@@ -35,11 +35,23 @@ public interface PSEUDOVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFuncion(PSEUDOParser.FuncionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PSEUDOParser#var}.
+	 * Visit a parse tree produced by {@link PSEUDOParser#dataType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar(PSEUDOParser.VarContext ctx);
+	T visitDataType(PSEUDOParser.DataTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PSEUDOParser#bool_type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBool_type(PSEUDOParser.Bool_typeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PSEUDOParser#stringLit}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLit(PSEUDOParser.StringLitContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PSEUDOParser#condicional}.
 	 * @param ctx the parse tree
