@@ -12,12 +12,33 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
     public String visitExp(PSEUDOParser.ExpContext ctx) {
-        return ctx.getText();
+        if(ctx.getChild(0).equals(ctx.bool_type()))
+            return visit(ctx.bool_type());
+        else
+            return ctx.getText();
     }
 
     @Override
     public String visitOperacion(PSEUDOParser.OperacionContext ctx) {
-        return ctx.getText();
+        if(ctx.getChildCount() == 3)
+            return visit(ctx.getChild(0)) + ctx.getChild(1) + visit(ctx.getChild(2));
+        else
+            return visit(ctx.exp());
+    }
+
+    @Override
+    public String visitBool_type(PSEUDOParser.Bool_typeContext ctx) {
+        String type =  null;
+        switch (ctx.getText())
+        {
+            case "VERDADERO":
+                type = "true";
+                break;
+            case "FALSO":
+                type = "false";
+                break;
+        }
+        return type;
     }
 
     @Override
@@ -55,6 +76,9 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
                 break;
             case "STR":
                 type = "String";
+                break;
+            case "BOOL":
+                type = "boolean";
                 break;
         }
         return type;
