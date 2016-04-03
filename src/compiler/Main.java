@@ -21,12 +21,7 @@ public class Main {
         createJavaFile(input);
         compile();
         TimeUnit.SECONDS.sleep(1L);
-        System.out.println(run());
-    }
-
-    public static void compile() throws Exception{
-        Path directory = Paths.get(System.getProperty("user.dir"));
-        Runtime.getRuntime().exec("javac " + directory.toString() + "\\Code.java");
+        run();
     }
 
     private static void createJavaFile(ANTLRInputStream input) throws Exception{
@@ -48,13 +43,15 @@ public class Main {
         writer.close();
     }
 
-    private static String run() throws Exception
-    {
+
+    public static void compile() throws Exception{
         Path directory = Paths.get(System.getProperty("user.dir"));
-        Process process = Runtime.getRuntime().exec(new String[]{"java", "-cp", directory.toString(), "Code"});
-        try(InputStream in = process.getInputStream()) {
-            return new Scanner(in).useDelimiter("\\A").next();
-        }
+        Runtime.getRuntime().exec("javac " + directory.toString() + "\\Code.java");
+    }
+
+    private static void  run() throws Exception {
+        Runtime rt = Runtime.getRuntime();
+        rt.exec("cmd /c start run.bat");
     }
 
 }
