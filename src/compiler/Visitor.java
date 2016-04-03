@@ -10,6 +10,8 @@ import java.util.Map;
 
 public class Visitor extends PSEUDOBaseVisitor<String> {
 
+    Map<String, String> mVarTypes = new HashMap<>();
+
     @Override
     public String visitExp(PSEUDOParser.ExpContext ctx) {
         if (ctx.getChild(0).equals(ctx.bool_type()))
@@ -44,6 +46,7 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     public String visitVariable(PSEUDOParser.VariableContext ctx) {
         String type = getJavaDataType(ctx.dataType());
         String name = ctx.varName.getText();
+        mVarTypes.put(name,type);
 
         if (ctx.expr != null) {
             String value = visit(ctx.expr);
@@ -84,6 +87,23 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     public String visitImprime(PSEUDOParser.ImprimeContext ctx) {
         String value = visit(ctx.getChild(2));
         return "System.out.println(" + value + ");\n";
+    }
+
+    @Override
+    public String visitLee(PSEUDOParser.LeeContext ctx) {
+        String name = ctx.nombre().getText();
+        String type = mVarTypes.get(name);
+
+        switch (type) {
+            case "int":
+                return name + " = input.nextInt();";
+            case "float":
+                return name + " = input.nextFloat();";
+            case "String":
+                String dummy = "input.nextLine();\n";
+                return dummy + name + " = input.nextLine();";
+        }
+        return super.visitLee(ctx);
     }
 
     @Override

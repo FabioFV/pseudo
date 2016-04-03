@@ -34,6 +34,7 @@ public class Main {
 
         String code = "public class Code {\n" +
                 "\tpublic static void main(String args[]){\n\t\t" +
+                "java.util.Scanner input = new java.util.Scanner(System.in);" +
                 instructions + "\n" +
                 "\t}\n" +
                 "}";

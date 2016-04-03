@@ -26,6 +26,8 @@ PROGRAMA
             }
         }
 
+        LEE(y)
+
         SI ( (x > 0) Y (y > 2) ) ENTONCES
         {
             IMPRIME("si")
@@ -34,4 +36,8 @@ PROGRAMA
         {
             IMPRIME("no")
         }
+
+        STR nombre
+        LEE(nombre)
+        IMPRIME(nombre)
 FIN
