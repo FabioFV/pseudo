@@ -53,11 +53,19 @@ public interface PSEUDOVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringLit(PSEUDOParser.StringLitContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link PSEUDOParser#condicional}.
+	 * Visit a parse tree produced by the {@code simpleConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCondicional(PSEUDOParser.CondicionalContext ctx);
+	T visitSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code elseConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElseConclusion(PSEUDOParser.ElseConclusionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link PSEUDOParser#condicion}.
 	 * @param ctx the parse tree

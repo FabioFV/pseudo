@@ -8,11 +8,11 @@ import parser.PSEUDOParser;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Visitor extends PSEUDOBaseVisitor<String>{
+public class Visitor extends PSEUDOBaseVisitor<String> {
 
     @Override
     public String visitExp(PSEUDOParser.ExpContext ctx) {
-        if(ctx.getChild(0).equals(ctx.bool_type()))
+        if (ctx.getChild(0).equals(ctx.bool_type()))
             return visit(ctx.bool_type());
         else
             return ctx.getText();
@@ -20,7 +20,7 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
     public String visitOperacion(PSEUDOParser.OperacionContext ctx) {
-        if(ctx.getChildCount() == 3)
+        if (ctx.getChildCount() == 3)
             return visit(ctx.getChild(0)) + ctx.getChild(1) + visit(ctx.getChild(2));
         else
             return visit(ctx.exp());
@@ -28,9 +28,8 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
 
     @Override
     public String visitBool_type(PSEUDOParser.Bool_typeContext ctx) {
-        String type =  null;
-        switch (ctx.getText())
-        {
+        String type = null;
+        switch (ctx.getText()) {
             case "VERDADERO":
                 type = "true";
                 break;
@@ -46,10 +45,9 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
         String type = getJavaDataType(ctx.dataType());
         String name = ctx.varName.getText();
 
-        if(ctx.expr != null)
-        {
+        if (ctx.expr != null) {
             String value = visit(ctx.expr);
-            return type + " " + name + " = " +value +";";
+            return type + " " + name + " = " + value + ";";
         }
 
         return type + " " + name + ";";
@@ -60,14 +58,12 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
         String type = getJavaDataType(ctx.dataType());
         String name = ctx.nombre().getText();
         String value = visit(ctx.exp());
-        return "final " + type + " " + name + " = " +value +";";
+        return "final " + type + " " + name + " = " + value + ";";
     }
 
-    private String getJavaDataType(PSEUDOParser.DataTypeContext dataType)
-    {
-        String type =  null;
-        switch (dataType.getText())
-        {
+    private String getJavaDataType(PSEUDOParser.DataTypeContext dataType) {
+        String type = null;
+        switch (dataType.getText()) {
             case "ENT":
                 type = "int";
                 break;
@@ -87,14 +83,41 @@ public class Visitor extends PSEUDOBaseVisitor<String>{
     @Override
     public String visitImprime(PSEUDOParser.ImprimeContext ctx) {
         String value = visit(ctx.getChild(2));
-        return  "System.out.println(" + value + ");\n";
+        return "System.out.println(" + value + ");\n";
     }
 
     @Override
     public String visitAsignacion(PSEUDOParser.AsignacionContext ctx) {
         String name = ctx.nombre().getText();
         String value = visit(ctx.operacion());
-        return name + " = " +value +";";
+        return name + " = " + value + ";";
+    }
+
+    @Override
+    public String visitCondicion(PSEUDOParser.CondicionContext ctx) {
+        if (ctx.getChildCount() == 1)
+            return ctx.getText();
+        else {
+            String signo;
+            if (ctx.getChild(3).equals(ctx.AND()))
+                signo = "&&";
+            else
+                signo = "||";
+            return visit(ctx.getChild(1)) + signo + visit(ctx.getChild(5));
+        }
+    }
+
+    @Override
+    public String visitSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx) {
+        return "if (" + visit(ctx.condicion()) + ')' +
+                "{" + visit(ctx.conclusion()) + "}";
+    }
+
+    @Override
+    public String visitElseConclusion(PSEUDOParser.ElseConclusionContext ctx) {
+        return "if (" + visit(ctx.condicion()) + ')' +
+                "{" + visit(ctx.conclusion(0)) + "}" +
+                "else {" + visit(ctx.conclusion(1)) + "}";
     }
 
     @Override

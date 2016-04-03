@@ -78,15 +78,29 @@ public interface PSEUDOListener extends ParseTreeListener {
 	 */
 	void exitStringLit(PSEUDOParser.StringLitContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link PSEUDOParser#condicional}.
+	 * Enter a parse tree produced by the {@code simpleConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
 	 * @param ctx the parse tree
 	 */
-	void enterCondicional(PSEUDOParser.CondicionalContext ctx);
+	void enterSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PSEUDOParser#condicional}.
+	 * Exit a parse tree produced by the {@code simpleConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
 	 * @param ctx the parse tree
 	 */
-	void exitCondicional(PSEUDOParser.CondicionalContext ctx);
+	void exitSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code elseConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void enterElseConclusion(PSEUDOParser.ElseConclusionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code elseConclusion}
+	 * labeled alternative in {@link PSEUDOParser#condicional}.
+	 * @param ctx the parse tree
+	 */
+	void exitElseConclusion(PSEUDOParser.ElseConclusionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link PSEUDOParser#condicion}.
 	 * @param ctx the parse tree

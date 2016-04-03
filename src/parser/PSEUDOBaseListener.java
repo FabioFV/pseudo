@@ -100,13 +100,25 @@ public class PSEUDOBaseListener implements PSEUDOListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCondicional(PSEUDOParser.CondicionalContext ctx) { }
+	@Override public void enterSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCondicional(PSEUDOParser.CondicionalContext ctx) { }
+	@Override public void exitSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterElseConclusion(PSEUDOParser.ElseConclusionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitElseConclusion(PSEUDOParser.ElseConclusionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

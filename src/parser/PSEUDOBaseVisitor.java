@@ -66,7 +66,14 @@ public class PSEUDOBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCondicional(PSEUDOParser.CondicionalContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSimpleConclusion(PSEUDOParser.SimpleConclusionContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitElseConclusion(PSEUDOParser.ElseConclusionContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -5,6 +5,7 @@ FIN     : 'FIN';
 
 IF      : 'SI' ;
 THEN    : 'ENTONCES';
+ELSE    : 'SINO';
 
 AND     : 'Y' ;
 OR      : 'O' ;
@@ -61,7 +62,8 @@ bool_type   : TRUE | FALSE;
 stringLit : QT nombre QT;
 
 //CONDICION
-condicional : IF LPAREN condicion RPAREN THEN conclusion;
+condicional : IF LPAREN condicion RPAREN THEN conclusion #simpleConclusion
+            | IF LPAREN condicion RPAREN THEN conclusion ELSE conclusion #elseConclusion;
 
 condicion   : LPAREN condicion RPAREN AND LPAREN condicion RPAREN | LPAREN condicion RPAREN OR LPAREN condicion RPAREN
             | evaluacion;
@@ -70,7 +72,7 @@ comp_operator : GT | GE | LT | LE | EQ;
 
 evaluacion  : (nombre | operacion) comp_operator (nombre | valor);
 
-conclusion  : asignacion | funcion;
+conclusion  : '{'cuerpo'}';
 
 //EXPRESIONES
 asignacion  : nombre EQ operacion;

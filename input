@@ -14,4 +14,24 @@ PROGRAMA
 
         BOOL isOK = VERDADERO
         IMPRIME(isOK)
+
+        SI(x > 0) ENTONCES
+        {
+            IMPRIME(x)
+            x = x * 2
+            SI(x > 2) ENTONCES
+            {
+                IMPRIME("mayor")
+                y = 1
+            }
+        }
+
+        SI ( (x > 0) Y (y > 2) ) ENTONCES
+        {
+            IMPRIME("si")
+        }
+        SINO
+        {
+            IMPRIME("no")
+        }
 FIN
