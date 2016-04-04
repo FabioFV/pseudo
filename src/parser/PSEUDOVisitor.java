@@ -144,4 +144,10 @@ public interface PSEUDOVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLee(PSEUDOParser.LeeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link PSEUDOParser#mientras}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMientras(PSEUDOParser.MientrasContext ctx);
 }

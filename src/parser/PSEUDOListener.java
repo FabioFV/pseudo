@@ -231,4 +231,14 @@ public interface PSEUDOListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLee(PSEUDOParser.LeeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link PSEUDOParser#mientras}.
+	 * @param ctx the parse tree
+	 */
+	void enterMientras(PSEUDOParser.MientrasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PSEUDOParser#mientras}.
+	 * @param ctx the parse tree
+	 */
+	void exitMientras(PSEUDOParser.MientrasContext ctx);
 }

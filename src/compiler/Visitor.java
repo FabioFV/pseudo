@@ -141,6 +141,12 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     }
 
     @Override
+    public String visitMientras(PSEUDOParser.MientrasContext ctx) {
+        return "while(" + visit(ctx.condicion()) + ")" +
+                "{" + visit(ctx.conclusion()) + "}";
+    }
+
+    @Override
     protected String aggregateResult(String aggregate, String nextResult) {
         if (aggregate == null) {
             return nextResult;

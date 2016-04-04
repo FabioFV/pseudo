@@ -40,4 +40,11 @@ PROGRAMA
         STR nombre
         LEE(nombre)
         IMPRIME(nombre)
+
+        ENT it = 1
+        MIENTRAS (it <= 10)
+        {
+            IMPRIME(it)
+            it = it + 1
+        }
 FIN

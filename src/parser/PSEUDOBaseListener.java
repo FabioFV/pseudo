@@ -275,6 +275,18 @@ public class PSEUDOBaseListener implements PSEUDOListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLee(PSEUDOParser.LeeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMientras(PSEUDOParser.MientrasContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMientras(PSEUDOParser.MientrasContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

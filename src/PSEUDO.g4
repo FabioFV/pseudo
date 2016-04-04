@@ -39,6 +39,8 @@ CONST   : 'CONST';
 IMPRIME : 'IMPRIME';
 LEE     : 'LEE';
 
+MIENTRAS : 'MIENTRAS';
+
 NAMEDEF     : [a-zA-Z]+;
 NUMDEF      : [0-9]+;
 
@@ -49,7 +51,7 @@ COMMENT : '//' .+? ('\n'|EOF) -> skip ;
 
 programa    : INICIO cuerpo FIN;
 
-cuerpo      : (declaracion | funcion | asignacion | condicional)*;
+cuerpo      : (declaracion | funcion | asignacion | mientras | condicional)*;
 
 declaracion :  variable | constante;
 
@@ -98,3 +100,6 @@ constante   : CONST dataType nombre EQ exp;
 imprime     : IMPRIME LPAREN (exp | operacion) RPAREN;
 
 lee         : LEE LPAREN nombre RPAREN;
+
+//CICLO
+mientras    : MIENTRAS LPAREN condicion RPAREN conclusion;
