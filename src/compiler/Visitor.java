@@ -16,8 +16,33 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     public String visitExp(PSEUDOParser.ExpContext ctx) {
         if (ctx.getChild(0).equals(ctx.bool_type()))
             return visit(ctx.bool_type());
+
+        else if(ctx.getChild(0).equals(ctx.stringLit()))
+            return visit(ctx.stringLit());
+
         else
             return ctx.getText();
+    }
+
+    @Override
+    public String visitNombre(PSEUDOParser.NombreContext ctx) {
+
+        return ctx.getText();
+    }
+
+    @Override
+    public String visitValor(PSEUDOParser.ValorContext ctx) {
+        return ctx.getText();
+    }
+
+    @Override
+    public String visitStringLit(PSEUDOParser.StringLitContext ctx) {
+        String result = "\"";
+        for (int i = 1; i < ctx.getChildCount()-1; i++) {
+            result += visit(ctx.getChild(i)) + " ";
+        }
+        result += "\"";
+        return result;
     }
 
     @Override
@@ -71,7 +96,7 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
                 type = "int";
                 break;
             case "DEC":
-                type = "float";
+                type = "double";
                 break;
             case "STR":
                 type = "String";
@@ -98,7 +123,7 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
             case "int":
                 return name + " = input.nextInt();";
             case "float":
-                return name + " = input.nextFloat();";
+                return name + " = input.nextDouble();";
             case "String":
                 String dummy = "input.nextLine();\n";
                 return dummy + name + " = input.nextLine();";

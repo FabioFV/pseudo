@@ -1,46 +1,39 @@
 PROGRAMA
         ENT x = 5 + 2
         ENT y = 3
-        IMPRIME(x*y)
-        x = 2
-        IMPRIME(1+x)
 
-        STR hola = "Hola"
+        IMPRIME("Valor de x es " + x)
+        IMPRIME("Valor de y es " + y)
+        IMPRIME("Resultado de x por y " + x*y)
+
+        STR hola = "Hola Mundo"
         IMPRIME(hola)
-        IMPRIME("Adios")
 
-        CONST ENT NOSE = 2016
-        IMPRIME(NOSE)
+        CONST DEC PI = 3.141592653
+        IMPRIME(PI)
 
         BOOL isOK = VERDADERO
-        IMPRIME(isOK)
+        IMPRIME("Valor de isOk es " + isOK)
 
-        SI(x > 0) ENTONCES
+        SI(isOK) ENTONCES
         {
-            IMPRIME(x)
-            x = x * 2
-            SI(x > 2) ENTONCES
+            LEE(x)
+            SI(x > 10) ENTONCES
             {
-                IMPRIME("mayor")
-                y = 1
+                IMPRIME("El numero es mayor que 10")
+            }
+            SINO
+            {
+                IMPRIME("El numero es menor que 10")
             }
         }
 
-        LEE(y)
-
-        SI ( (x > 0) Y (y > 2) ) ENTONCES
-        {
-            IMPRIME("si")
-        }
-        SINO
-        {
-            IMPRIME("no")
-        }
-
         STR nombre
+        IMPRIME("Introduzca su nombre")
         LEE(nombre)
         IMPRIME(nombre)
 
+        IMPRIME("Numeros del 1 al 10")
         ENT it = 1
         MIENTRAS (it <= 10)
         {

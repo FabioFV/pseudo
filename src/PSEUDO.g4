@@ -28,6 +28,7 @@ LPAREN  : '(' ;
 RPAREN  : ')' ;
 
 QT      : '"';
+POINT   : '.';
 
 ENT     : 'ENT';
 DEC     : 'DEC';
@@ -61,14 +62,14 @@ dataType    : ENT | DEC | STR | BOOL;
 
 bool_type   : TRUE | FALSE;
 
-stringLit : QT nombre QT;
+stringLit : QT (nombre|valor)+ QT;
 
 //CONDICION
 condicional : IF LPAREN condicion RPAREN THEN conclusion #simpleConclusion
             | IF LPAREN condicion RPAREN THEN conclusion ELSE conclusion #elseConclusion;
 
 condicion   : LPAREN condicion RPAREN AND LPAREN condicion RPAREN | LPAREN condicion RPAREN OR LPAREN condicion RPAREN
-            | evaluacion;
+            | evaluacion | nombre;
 
 comp_operator : GT | GE | LT | LE | EQ;
 
@@ -89,7 +90,8 @@ exp         : nombre | valor | bool_type | stringLit;
 
 nombre      : NAMEDEF;
 
-valor       : NUMDEF;
+valor       : MINUS? NUMDEF + (POINT NUMDEF +)?;
+
 
 //VARIABLES & CONSTANTES
 variable    : dataType varName=nombre | dataType varName=nombre EQ expr=operacion;
