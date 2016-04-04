@@ -13,8 +13,8 @@ import java.io.File;
  * Created by Loammi on 3/4/2016.
  */
 public class IDEGUI {
-    private JFrame frame;            //instancia de JFrame (ventana principal)
-    private JMenuBar menuBar;        //instancia de JMenuBar (barra de menú)
+    private JFrame frame;            
+    private JMenuBar menuBar;        
     private JTextArea textArea;
 
     private JLabel sbFilePath;    //etiqueta que muestra la ubicación del archivo actual
@@ -25,6 +25,7 @@ public class IDEGUI {
 
     private final EventHandler eventHandler;          //instancia de EventHandler (la clase que maneja eventos)
     private final ActionPerformer actionPerformer;    //instancia de ActionPerformer (la clase que ejecuta acciones)
+    private final UndoManager undoManager;
 
     public static void main(String[] args) {
 
@@ -37,11 +38,20 @@ public class IDEGUI {
         });
     }
     public IDEGUI(){
+        try {    //LookAndFeel nativo
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+            System.err.println(ex);
+        }
+
         frame = new JFrame("PSEUDO");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         eventHandler = new EventHandler();              //construye una instancia de EventHandler
         actionPerformer = new ActionPerformer(this);
+        undoManager = new UndoManager();
+
+
         createTextArea();
         createMenuBar();
         frame.setJMenuBar(menuBar);
@@ -64,6 +74,10 @@ public class IDEGUI {
 
         JMenu menu1 = new JMenu("Archivo");
 
+        JMenuItem itemOpen = new JMenuItem("Abrir");
+        itemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK));
+        itemOpen.setActionCommand("cmd_open");
+
         JMenuItem itemSave = new JMenuItem("Guardar");
         itemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
         itemSave.setActionCommand("cmd_save");
@@ -72,6 +86,7 @@ public class IDEGUI {
         itemSaveAs.setActionCommand("cmd_saveas");
         itemSaveAs.addActionListener(eventHandler);
 
+        menu1.add(itemOpen);
         menu1.add(itemSave);
         menu1.add(itemSaveAs);
 
@@ -91,29 +106,40 @@ public class IDEGUI {
     EventHandler getEventHandler() {
         return eventHandler;
     }
+    UndoManager getUndoManager() {
+
+        return undoManager;
+    }
 
     boolean documentHasChanged() {
+
         return hasChanged;
     }
     void setDocumentChanged(boolean hasChanged) {
+
         this.hasChanged = hasChanged;
     }
     JTextArea getJTextArea() {
+
         return textArea;
     }
     JFrame getJFrame() {
+
         return frame;
     }
     File getCurrentFile() {
         return currentFile;
     }
     void setCurrentFile(File currentFile) {
+
         this.currentFile = currentFile;
     }
     JLabel getJLabelFilePath() {
+
         return sbFilePath;
     }
     JLabel getJLabelFileSize() {
+
         return sbFileSize;
     }
     class EventHandler extends MouseAdapter implements ActionListener,
@@ -122,7 +148,9 @@ public class IDEGUI {
         @Override
         public void actionPerformed(ActionEvent ae) {
             String ac = ae.getActionCommand();    //se obtiene el nombre del comando ejecutado
-            if (ac.equals("cmd_save")) {    //opción seleccionada: "Guardar"
+            if (ac.equals("cmd_open")) {    //opción seleccionada: "Guardar"
+                actionPerformer.actionOpen();
+            } else if (ac.equals("cmd_save")) {    //opción seleccionada: "Guardar"
                 actionPerformer.actionSave();
             } else if (ac.equals("cmd_saveas")) {    //opción seleccionada: "Guardar como"
                 actionPerformer.actionSaveAs();
@@ -157,9 +185,9 @@ public class IDEGUI {
         }
         @Override
         public void undoableEditHappened(UndoableEditEvent uee) {
+            undoManager.addEdit(uee.getEdit());
             hasChanged = true;
         }
 
     }
-
 }
