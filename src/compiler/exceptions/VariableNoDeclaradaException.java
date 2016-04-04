@@ -21,7 +21,7 @@ public class VariableNoDeclaradaException extends RuntimeException
     @Override
     public String getMessage() {
 
-        return line + ":" + column + " variable no declarada <" + varName + ">";
+        return line + ":" + column + " esta variable no se encuentra declarada < " + varName + " >";
     }
 
     @Override
