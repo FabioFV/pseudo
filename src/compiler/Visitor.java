@@ -26,7 +26,6 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
 
     @Override
     public String visitNombre(PSEUDOParser.NombreContext ctx) {
-
         return ctx.getText();
     }
 
@@ -69,11 +68,6 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
 
     @Override
     public String visitVariable(PSEUDOParser.VariableContext ctx) {
-
-        if(mVarTypes.get(ctx.varName.getText()) == null){
-            throw new VariableNoDeclaradaException(ctx.nombre().getStart());
-        }else {
-
             String type = getJavaDataType(ctx.dataType());
             String name = ctx.varName.getText();
             mVarTypes.put(name, type);
@@ -84,7 +78,6 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
             }
 
             return type + " " + name + ";";
-        }
     }
 
     @Override
@@ -140,7 +133,8 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     @Override
     public String visitAsignacion(PSEUDOParser.AsignacionContext ctx) {
         String name = ctx.nombre().getText();
-
+        if(mVarTypes.get(name) == null)
+            throw new VariableNoDeclaradaException(ctx.nombre().getStart());
         String value = visit(ctx.operacion());
         return name + " = " + value + ";";
     }
