@@ -149,7 +149,7 @@ public class IDEGUI {
             CaretListener,
             UndoableEditListener {
         @Override
-        public void actionPerformed(ActionEvent ae) {
+        public void actionPerformed(ActionEvent ae){
             String ac = ae.getActionCommand();    //se obtiene el nombre del comando ejecutado
 
             if (ac.equals("cmd_open")) {    //opción seleccionada: "Abrir"
@@ -159,7 +159,14 @@ public class IDEGUI {
             } else if (ac.equals("cmd_saveas")) {    //opción seleccionada: "Guardar como"
                 actionPerformer.actionSaveAs();
             } else if(ac.equals("cmd_run")){
-                actionPerformer.actionRun();
+                try
+                {
+                    actionPerformer.actionRun();
+                }
+                catch (Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
             }
 
         }

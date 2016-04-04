@@ -1,5 +1,10 @@
+import compiler.Main;
+import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.ANTLRInputStream;
+
 import javax.swing.*;
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 /**
@@ -41,11 +46,8 @@ public class ActionPerformer {
                 ide.getJTextArea().getDocument().addUndoableEditListener(ide.getEventHandler());
 
                ide.getUndoManager().die();    //se limpia el buffer del administrador de edición
-             //   ide.updateControls();          //se actualiza el estado de las opciones "Deshacer" y "Rehacer"
 
                 ide.getJFrame().setTitle("PSEUDO - " + f.getName());
-//                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
-//                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
                 ide.setCurrentFile(f);
                 ide.setDocumentChanged(false);
             } catch (IOException ex) {    //en caso de que ocurra una excepción
@@ -90,10 +92,6 @@ public class ActionPerformer {
                 //nuevo título de la ventana con el nombre del archivo guardado
                 ide.getJFrame().setTitle("PSEUDO - " + f.getName());
 
-//                //muestra la ubicación del archivo guardado
-//                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
-//                //muestra el tamaño del archivo guardado
-//                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
                 ide.setCurrentFile(f);
                 ide.setDocumentChanged(false);
             } catch (IOException ex) {    //en caso de que ocurra una excepción
@@ -106,15 +104,21 @@ public class ActionPerformer {
         }
     }
 
-    public void actionRun(){
-        //TODO add logic here
+    public void actionRun() throws Exception{
+        if (ide.getCurrentFile() == null)
+            actionSave();
+        ANTLRInputStream input = new ANTLRFileStream(ide.getCurrentFile().getAbsolutePath());
+        Main.createJavaFile(input);
+        Main.compile();
+        TimeUnit.SECONDS.sleep(1L);
+        Main.run();
+
     }
 
     private static JFileChooser getJFileChooser() {
         JFileChooser fc = new JFileChooser();                     //construye un JFileChooser
         fc.setDialogTitle("PSEUDO - Elige un archivo:");    //se le establece un título
         fc.setMultiSelectionEnabled(false);                       //desactiva la multi-selección
-       // fc.setFileFilter(textFileFilter);                         //aplica un filtro de extensiones
         return fc;    //retorna el JFileChooser
     }
 

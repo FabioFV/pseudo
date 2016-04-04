@@ -24,7 +24,7 @@ public class Main {
         run();
     }
 
-    private static void createJavaFile(ANTLRInputStream input) throws Exception{
+    public static void createJavaFile(ANTLRInputStream input) throws Exception{
         PSEUDOLexer lexer = new PSEUDOLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         PSEUDOParser parser = new PSEUDOParser(tokens);
@@ -50,7 +50,7 @@ public class Main {
         Runtime.getRuntime().exec("javac " + directory.toString() + "\\Code.java");
     }
 
-    private static void  run() throws Exception {
+    public static void  run() throws Exception {
         Runtime rt = Runtime.getRuntime();
         rt.exec("cmd /c start run.bat");
     }
