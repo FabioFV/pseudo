@@ -151,7 +151,7 @@ public class IDEGUI {
         @Override
         public void actionPerformed(ActionEvent ae) {
             String ac = ae.getActionCommand();    //se obtiene el nombre del comando ejecutado
-            System.out.println(ae.getActionCommand());
+
             if (ac.equals("cmd_open")) {    //opción seleccionada: "Abrir"
                 actionPerformer.actionOpen();
             } else if (ac.equals("cmd_save")) {    //opción seleccionada: "Guardar"

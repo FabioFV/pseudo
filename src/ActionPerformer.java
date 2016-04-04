@@ -13,18 +13,18 @@ public class ActionPerformer {
     }
 
     public void actionOpen() {
-//        if (ide.documentHasChanged() == true) {    //si el documento esta marcado como modificado
-//
-//            int option = JOptionPane.showConfirmDialog(ide.getJFrame(), "¿Desea guardar los cambios?");
-//            switch (option) {
-//                case JOptionPane.YES_OPTION:     //si elige que si
-//                    actionSave();               //guarda el archivo
-//                    break;
-//                case JOptionPane.CANCEL_OPTION:  //si elige cancelar
-//                    return;                      //cancela esta operación
-//                //en otro caso se continúa con la operación y no se guarda el documento actual
-//            }
-//        }
+        if (ide.documentHasChanged() == true) {    //si el documento esta marcado como modificado
+
+            int option = JOptionPane.showConfirmDialog(ide.getJFrame(), "¿Desea guardar los cambios?");
+            switch (option) {
+                case JOptionPane.YES_OPTION:     //si elige que si
+                    actionSave();               //guarda el archivo
+                    break;
+                case JOptionPane.CANCEL_OPTION:  //si elige cancelar
+                    return;                      //cancela esta operación
+                //en otro caso se continúa con la operación y no se guarda el documento actual
+            }
+        }
 
         JFileChooser fc = getJFileChooser();
         int state = fc.showOpenDialog(ide.getJFrame());
@@ -44,8 +44,8 @@ public class ActionPerformer {
              //   ide.updateControls();          //se actualiza el estado de las opciones "Deshacer" y "Rehacer"
 
                 ide.getJFrame().setTitle("PSEUDO - " + f.getName());
-                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
-                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
+//                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
+//                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
                 ide.setCurrentFile(f);
                 ide.setDocumentChanged(false);
             } catch (IOException ex) {    //en caso de que ocurra una excepción
@@ -90,10 +90,10 @@ public class ActionPerformer {
                 //nuevo título de la ventana con el nombre del archivo guardado
                 ide.getJFrame().setTitle("PSEUDO - " + f.getName());
 
-                //muestra la ubicación del archivo guardado
-                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
-                //muestra el tamaño del archivo guardado
-                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
+//                //muestra la ubicación del archivo guardado
+//                ide.getJLabelFilePath().setText(shortPathName(f.getAbsolutePath()));
+//                //muestra el tamaño del archivo guardado
+//                ide.getJLabelFileSize().setText(roundFileSize(f.length()));
                 ide.setCurrentFile(f);
                 ide.setDocumentChanged(false);
             } catch (IOException ex) {    //en caso de que ocurra una excepción
