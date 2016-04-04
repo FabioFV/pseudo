@@ -110,7 +110,7 @@ public class ActionPerformer {
         ANTLRInputStream input = new ANTLRFileStream(ide.getCurrentFile().getAbsolutePath());
         Main.createJavaFile(input);
         Main.compile();
-        TimeUnit.SECONDS.sleep(1L);
+        TimeUnit.SECONDS.sleep(2L);
         Main.run();
 
     }

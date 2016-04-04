@@ -111,8 +111,6 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     public String visitImprime(PSEUDOParser.ImprimeContext ctx) {
         String value = visit(ctx.getChild(2));
 
-        if(mVarTypes.get(value) == null) throw new VariableNoDeclaradaException(ctx.exp().getStart());
-
         return "System.out.println(" + value + ");\n";
     }
 
@@ -147,7 +145,6 @@ public class Visitor extends PSEUDOBaseVisitor<String> {
     @Override
     public String visitCondicion(PSEUDOParser.CondicionContext ctx) {
         if (ctx.getChildCount() == 1) {
-            if (mVarTypes.get(ctx.getText()) == null) throw new VariableNoDeclaradaException(ctx.getStart());
             return ctx.getText();
         }
         else {

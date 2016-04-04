@@ -44,7 +44,7 @@ public class IDEGUI {
             System.err.println(ex);
         }
 
-        frame = new JFrame("PSEUDO");
+        frame = new JFrame("PSEUDO COMPILER");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         eventHandler = new EventHandler();              //construye una instancia de EventHandler
@@ -62,7 +62,7 @@ public class IDEGUI {
     }
 
     private void createTextArea() {
-        textArea = new JTextArea("/* Bienvenido a PSEUDO */ ");    //construye un JTextArea
+        textArea = new JTextArea("");    //construye un JTextArea
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.addCaretListener(eventHandler);
