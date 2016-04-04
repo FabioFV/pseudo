@@ -77,10 +77,12 @@ public class IDEGUI {
         JMenuItem itemOpen = new JMenuItem("Abrir");
         itemOpen.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK));
         itemOpen.setActionCommand("cmd_open");
+        itemOpen.addActionListener(eventHandler);
 
         JMenuItem itemSave = new JMenuItem("Guardar");
         itemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
         itemSave.setActionCommand("cmd_save");
+        itemSave.addActionListener(eventHandler);
 
         JMenuItem itemSaveAs = new JMenuItem("Guardar como...");
         itemSaveAs.setActionCommand("cmd_saveas");
@@ -93,8 +95,9 @@ public class IDEGUI {
         JMenu menu2 = new JMenu("Ejecutar");
 
         JMenuItem itemRun = new JMenuItem("Ejecutar");
-        itemSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
-        itemSave.setActionCommand("cmd_run");
+        itemRun.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));
+        itemRun.setActionCommand("cmd_run");
+        itemRun.addActionListener(eventHandler);
 
         menu2.add(itemRun);
 
@@ -148,7 +151,8 @@ public class IDEGUI {
         @Override
         public void actionPerformed(ActionEvent ae) {
             String ac = ae.getActionCommand();    //se obtiene el nombre del comando ejecutado
-            if (ac.equals("cmd_open")) {    //opción seleccionada: "Guardar"
+            System.out.println(ae.getActionCommand());
+            if (ac.equals("cmd_open")) {    //opción seleccionada: "Abrir"
                 actionPerformer.actionOpen();
             } else if (ac.equals("cmd_save")) {    //opción seleccionada: "Guardar"
                 actionPerformer.actionSave();

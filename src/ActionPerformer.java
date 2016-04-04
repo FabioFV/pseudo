@@ -13,18 +13,19 @@ public class ActionPerformer {
     }
 
     public void actionOpen() {
-        if (ide.documentHasChanged() == true) {    //si el documento esta marcado como modificado
+//        if (ide.documentHasChanged() == true) {    //si el documento esta marcado como modificado
+//
+//            int option = JOptionPane.showConfirmDialog(ide.getJFrame(), "¿Desea guardar los cambios?");
+//            switch (option) {
+//                case JOptionPane.YES_OPTION:     //si elige que si
+//                    actionSave();               //guarda el archivo
+//                    break;
+//                case JOptionPane.CANCEL_OPTION:  //si elige cancelar
+//                    return;                      //cancela esta operación
+//                //en otro caso se continúa con la operación y no se guarda el documento actual
+//            }
+//        }
 
-            int option = JOptionPane.showConfirmDialog(ide.getJFrame(), "¿Desea guardar los cambios?");
-            switch (option) {
-                case JOptionPane.YES_OPTION:     //si elige que si
-                    actionSave();               //guarda el archivo
-                    break;
-                case JOptionPane.CANCEL_OPTION:  //si elige cancelar
-                    return;                      //cancela esta operación
-                //en otro caso se continúa con la operación y no se guarda el documento actual
-            }
-        }
         JFileChooser fc = getJFileChooser();
         int state = fc.showOpenDialog(ide.getJFrame());
 

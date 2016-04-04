@@ -20,6 +20,12 @@ public class VariableNoDeclaradaException extends RuntimeException
 
     @Override
     public String getMessage() {
+
         return line + ":" + column + " variable no declarada <" + varName + ">";
+    }
+
+    @Override
+    public Throwable fillInStackTrace() {
+        return null;
     }
 }
